@@ -18,7 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $twoots = \App\Models\Twoot::all();
+    return view('dashboard', ['twoots' => $twoots]);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
