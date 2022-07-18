@@ -49,8 +49,8 @@
                                         <img src="https://uifaces.co/our-content/donated/1H_7AxP0.jpg" alt="">
                                     </div>
                                     <div class="flex-grow pl-3">
-                                        <h6 class="font-bold text-md">{{ $twoot->user_id }}</h6> <!-- user name -->
-                                        <p class="text-xs text-gray-600">{{ $twoot->user_id }}</p> <!-- username -->
+                                        <h6 class="font-bold text-md">{{ $twoot->user->name }}</h6> <!-- user name -->
+                                        <p class="text-xs text-gray-600">{{ $twoot->user->email }}</p> <!-- username -->
                                     </div>
                                     <div class="w-12 text-right">
                                         <i class="mdi mdi-twitter text-blue-400 text-3xl"></i>
