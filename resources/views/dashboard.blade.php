@@ -43,7 +43,30 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach($twoots as $twoot)
-                        <p>{{ $twoot->twoot_body }}</p>
+                            <div class="w-full mx-auto rounded-lg bg-white shadow p-5 text-gray-800" style="max-width: 400px">
+                                <div class="w-full flex mb-4">
+                                    <div class="overflow-hidden rounded-full w-12 h-12">
+                                        <img src="https://uifaces.co/our-content/donated/1H_7AxP0.jpg" alt="">
+                                    </div>
+                                    <div class="flex-grow pl-3">
+                                        <h6 class="font-bold text-md">{{ $twoot->user_id }}</h6> <!-- user name -->
+                                        <p class="text-xs text-gray-600">{{ $twoot->user_id }}</p> <!-- username -->
+                                    </div>
+                                    <div class="w-12 text-right">
+                                        <i class="mdi mdi-twitter text-blue-400 text-3xl"></i>
+                                    </div>
+                                </div>
+                                <div class="w-full mb-4">
+                                    <p class="text-sm">
+                                        {{ $twoot->twoot_body }}
+                                    </p>
+                                </div>
+                                <div class="w-full">
+                                    <p class="text-xs text-gray-500 text-right">
+                                        {{ $twoot->created_at }}
+                                    </p>
+                                </div>
+                            </div>
                     @endforeach
                 </div>
             </div>
