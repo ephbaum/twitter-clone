@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="flex justify-center w-screen">
-        <form action="POST">
+        <form action="/api/twoot" method="post">
             <div class="min-w-fit">
                 <label for="twoot" class="form-label block mb-2 text-gray-700">Twoot something magical:
                     <textarea class="
@@ -29,11 +29,13 @@
                     id="twootTextarea"
                     rows="4"
                     placeholder="What's shakin' bacon?"
+                    name="twoot_body"
                     ></textarea>
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
                 </label>
-                <button type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                <input type="submit" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
                    Twoot!
-                </button>
+                </input>
         </div>
         </form>
     </div>

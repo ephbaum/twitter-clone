@@ -15,7 +15,7 @@ class TwootController extends Controller
      */
     public function index()
     {
-        //
+        return Twoot::all();
     }
 
     /**
@@ -26,18 +26,25 @@ class TwootController extends Controller
      */
     public function store(StoreTwootRequest $request)
     {
-        //
+        $twoot = new Twoot([
+            'twoot_body' => $request->get('twoot_body'),
+            'user_id' => $request->get('user_id')
+        ]);
+
+        $twoot->save();
+
+        return new \Illuminate\Http\Response($twoot->created_at);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Twoot  $twoot
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Twoot
      */
-    public function show(Twoot $twoot)
+    public function show(int $id): Twoot
     {
-        //
+        return Twoot::find($id);
     }
 
     /**
