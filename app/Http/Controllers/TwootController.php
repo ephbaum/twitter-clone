@@ -33,7 +33,7 @@ class TwootController extends Controller
 
         $twoot->save();
 
-        return new \Illuminate\Http\Response($twoot->created_at);
+        return back();
     }
 
     /**

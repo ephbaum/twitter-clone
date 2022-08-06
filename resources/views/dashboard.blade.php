@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="w-full">
                                     <p class="text-xs text-gray-500 text-right">
-                                        {{ $twoot->created_at }}
+                                        @displayDate($twoot->created_at)
                                     </p>
                                 </div>
                             </div>

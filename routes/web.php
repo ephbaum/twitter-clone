@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $twoots = \App\Models\Twoot::all();
+    $twoots = \App\Models\Twoot::all()->sortByDesc('id');
     return view('dashboard', ['twoots' => $twoots]);
 })->middleware(['auth'])->name('dashboard');
 
