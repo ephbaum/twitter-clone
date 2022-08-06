@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $twoots = \App\Models\Twoot::all()->sortByDesc('id');
+    return view('welcome', ['twoots' => $twoots]);
 });
 
 Route::get('/dashboard', function () {
