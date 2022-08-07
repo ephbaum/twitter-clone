@@ -10,3 +10,18 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 
 Alpine.start();
+
+window.deleteTwoot = function(id) {
+	const oReq = new XMLHttpRequest();
+	oReq.addEventListener("load", reqListener);
+	oReq.open("GET", "/twoot/" + id + "/delete");
+	oReq.send();
+}
+
+function reqListener () {
+	/**
+	 * @todo add error handling here
+	 */
+	window.location = this.responseURL;
+}
+

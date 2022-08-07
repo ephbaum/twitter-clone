@@ -1,12 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+	    {{ __('Dashboard') }} 
+	</h2>
+
     </x-slot>
 
     <div class="flex justify-center w-screen">
-        <form action="/api/twoot" method="post">
+        <form action="/twoot" method="post">
+	@csrf
             <div class="min-w-fit">
                 <label for="twoot" class="form-label block mb-2 text-gray-700">Twoot something magical:
                     <textarea class="
@@ -44,17 +46,21 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach($twoots as $twoot)
-                            <div class="w-full mx-auto rounded-lg bg-white shadow p-5 text-gray-800" style="max-width: 400px">
+                            <div class="w-full mx-auto mb-4 rounded-lg bg-white shadow p-5 text-gray-800" style="max-width: 400px">
                                 <div class="w-full flex mb-4">
                                     <div class="overflow-hidden rounded-full w-12 h-12">
-                                        <img src="https://uifaces.co/our-content/donated/1H_7AxP0.jpg" alt="">
+                                        <img src="https://images.unsplash.com/photo-1552158732-06dc1d835de0?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="">
                                     </div>
                                     <div class="flex-grow pl-3">
                                         <h6 class="font-bold text-md">{{ $twoot->user->name }}</h6> <!-- user name -->
                                         <p class="text-xs text-gray-600">{{ $twoot->user->email }}</p> <!-- username -->
                                     </div>
                                     <div class="w-12 text-right">
-                                        <i class="mdi mdi-twitter text-blue-400 text-3xl"></i>
+				@if($twoot->user->id === Auth::user()->id)
+					<span onclick="deleteTwoot({{ $twoot->id }})">
+						<i class="fa fa-trash-o text-red-400"></i>
+					</span>
+				@endif
                                     </div>
                                 </div>
                                 <div class="w-full mb-4">
@@ -63,8 +69,10 @@
                                     </p>
                                 </div>
                                 <div class="w-full">
-                                    <p class="text-xs text-gray-500 text-right">
+                                    <p class="text-xs text-blue-500 text-right">
                                         @displayDate($twoot->created_at)
+
+
                                     </p>
                                 </div>
                             </div>

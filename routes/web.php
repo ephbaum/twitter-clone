@@ -23,4 +23,11 @@ Route::get('/dashboard', function () {
     return view('dashboard', ['twoots' => $twoots]);
 })->middleware(['auth'])->name('dashboard');
 
+Route::controller(\App\Http\Controllers\TwootController::class)->group(function () {
+    Route::get('/twoots', 'index');
+    Route::get('/twoot/{id}', 'show');
+    Route::post('/twoot', 'store');
+    Route::get('/twoot/{id}/delete', 'destroy');
+});
+
 require __DIR__.'/auth.php';

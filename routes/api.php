@@ -17,9 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::controller(\App\Http\Controllers\TwootController::class)->group(function () {
-    Route::get('/twoots', 'index');
-    Route::get('/twoot/{id}', 'show');
-    Route::post('/twoot', 'store');
-});

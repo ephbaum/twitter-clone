@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTwootRequest;
 use App\Http\Requests\UpdateTwootRequest;
 use App\Models\Twoot;
+use Illuminate\Http\Request;
 
 class TwootController extends Controller
 {
@@ -62,11 +63,31 @@ class TwootController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Twoot  $twoot
+     * @todo improve error handling and add tests.
+     * 
+     * @param \Illuminate\Http\Request $request the request
+     * @param int $id the id of the twoot to delete
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Twoot $twoot)
+    public function destroy(Request $request, int $id)
     {
-        //
+	    $twoot = Twoot::where('id', $id)->firstOrFail();
+
+	    if ($request->user()->cannot('delete', $twoot)) {
+		abort(403);
+	    }
+
+	    if (! $twoot->delete()) {
+		    return abort(500);
+	    }
+
+	    if (! $twoot->save()) {
+		    return abort(500);
+	    }
+	    
+	    return back();
+
     }
+
 }
