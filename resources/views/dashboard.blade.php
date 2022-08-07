@@ -35,7 +35,7 @@
                     ></textarea>
                     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
                 </label>
-                <input type="submit" value="Twoot!" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                <input type="submit" value="Twoot!" class="inline-block px-6 py-2.5 bg-blue-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out hover:cursor-pointer">
                 </input>
         </div>
         </form>
@@ -58,7 +58,7 @@
                                     <div class="w-12 text-right">
 				@if($twoot->user->id === Auth::user()->id)
 					<span onclick="deleteTwoot({{ $twoot->id }})">
-						<i class="fa fa-trash-o text-red-400"></i>
+						<i class="fa fa-trash-o text-red-100 hover:text-red-800 hover:cursor-pointer"></i>
 					</span>
 				@endif
                                     </div>
