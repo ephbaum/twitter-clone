@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\TwootController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $twoots = \App\Models\Twoot::all()->sortByDesc('id');
-    return view('welcome', ['twoots' => $twoots]);
+Route::controller(HomeController::class)
+    ->name('home')
+    ->group(function () {
+        Route::get('/', 'index');
+    });
+
+Route::controller(MainController::class)
+    ->middleware(['auth'])
+    ->name('dashboard')
+    ->group(function (){
+    Route::get('/dashboard', 'index');
 });
 
-Route::get('/dashboard', function () {
-    $twoots = \App\Models\Twoot::all()->sortByDesc('id');
-    return view('dashboard', ['twoots' => $twoots]);
-})->middleware(['auth'])->name('dashboard');
 
-Route::controller(\App\Http\Controllers\TwootController::class)->group(function () {
+Route::controller(TwootController::class)->group(function () {
     Route::get('/twoots', 'index');
     Route::get('/twoot/{id}', 'show');
     Route::post('/twoot', 'store');
