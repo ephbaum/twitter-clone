@@ -12,10 +12,12 @@ window.Alpine = Alpine;
 Alpine.start();
 
 window.deleteTwoot = function(id) {
-	const oReq = new XMLHttpRequest();
-	oReq.addEventListener("load", reqListener);
-	oReq.open("GET", "/twoot/" + id + "/delete");
-	oReq.send();
+    if (window.confirm("Are you sure?")) {
+        const oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", reqListener);
+        oReq.open("GET", "/twoot/" + id + "/delete");
+        oReq.send();
+    }
 }
 
 function reqListener () {
