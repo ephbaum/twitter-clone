@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Twooted;
 use App\Http\Requests\StoreTwootRequest;
 use App\Http\Requests\UpdateTwootRequest;
 use App\Models\Twoot;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TwootController extends Controller
@@ -23,9 +25,9 @@ class TwootController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreTwootRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreTwootRequest $request)
+    public function store(StoreTwootRequest $request): RedirectResponse
     {
         $twoot = new Twoot([
             'twoot_body' => $request->get('twoot_body'),
@@ -33,6 +35,8 @@ class TwootController extends Controller
         ]);
 
         $twoot->save();
+
+        Twooted::dispatch($twoot);
 
         return back();
     }
@@ -64,7 +68,7 @@ class TwootController extends Controller
      * Remove the specified resource from storage.
      *
      * @todo improve error handling and add tests.
-     * 
+     *
      * @param \Illuminate\Http\Request $request the request
      * @param int $id the id of the twoot to delete
      *
@@ -85,7 +89,7 @@ class TwootController extends Controller
 	    if (! $twoot->save()) {
 		    return abort(500);
 	    }
-	    
+
 	    return back();
 
     }

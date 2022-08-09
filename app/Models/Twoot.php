@@ -23,4 +23,20 @@ class Twoot extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    /**
+     * Each twoot can have many tags.
+     *
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(
+            Twoots_Tags::class,
+            'twoots_tags',
+            'twoot_id',
+            'tag_id',
+            'id',
+            'id',
+        )->withTimeStamps();
+    }
 }
