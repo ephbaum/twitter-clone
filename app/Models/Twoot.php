@@ -31,7 +31,7 @@ class Twoot extends Model
     public function tags()
     {
         return $this->belongsToMany(
-            Twoots_Tags::class,
+            Tags::class,
             'twoots_tags',
             'twoot_id',
             'tag_id',
