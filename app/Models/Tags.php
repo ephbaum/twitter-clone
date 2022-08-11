@@ -15,7 +15,6 @@ class Tags extends Model
 
     /**
      * Each tag can have many twoots.
-     *
      */
     public function twoots()
     {

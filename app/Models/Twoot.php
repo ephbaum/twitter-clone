@@ -26,7 +26,6 @@ class Twoot extends Model
 
     /**
      * Each twoot can have many tags.
-     *
      */
     public function tags()
     {
