@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoretagsRequest;
 use App\Http\Requests\UpdatetagsRequest;
-use App\Models\tags;
+use App\Models\Tags;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(Request $request, int $id): View|Factory|Application
     {
-        //
+        $tag = Tags::where('id', $id)->firstOrFail();
+        return view('dashboard', ['twoots' => $tag->twoots]);
     }
 
     /**

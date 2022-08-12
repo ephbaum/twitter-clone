@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-	    {{ __('Dashboard') }} 
+	    {{ __('Dashboard') }}
 	</h2>
 
     </x-slot>
@@ -63,16 +63,19 @@
 				@endif
                                     </div>
                                 </div>
-                                <div class="w-full mb-4">
-                                    <p class="text-sm">
+                                <div class="twoot-body-container w-full mb-4">
+                                    @if ( !empty($twoot->tags->all()) )
+                                        @foreach( $twoot->tags->all() as $tag )
+                                            <span class="tag-container hidden" data-tagid="{{ $tag->id }}" data-tagtag="{{ $tag->tag }}"></span>
+                                        @endforeach
+                                    @endif
+                                    <p class="twoot-body text-sm">
                                         {{ $twoot->twoot_body }}
                                     </p>
                                 </div>
                                 <div class="w-full">
                                     <p class="text-xs text-blue-500 text-right">
                                         @displayDate($twoot->created_at)
-
-
                                     </p>
                                 </div>
                             </div>

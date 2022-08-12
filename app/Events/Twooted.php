@@ -34,6 +34,6 @@ class Twooted
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new PrivateChannel('twoot');
     }
 }

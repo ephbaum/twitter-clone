@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TwootController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,10 @@ Route::controller(TwootController::class)->group(function () {
     Route::get('/twoot/{id}', 'show');
     Route::post('/twoot', 'store');
     Route::get('/twoot/{id}/delete', 'destroy');
+});
+
+Route::controller(TagsController::class)->group(function () {
+    Route::get('/tag/{tag}', 'index');
 });
 
 require __DIR__.'/auth.php';
